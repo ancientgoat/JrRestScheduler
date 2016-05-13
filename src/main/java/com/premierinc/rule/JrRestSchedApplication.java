@@ -42,7 +42,8 @@ public class JrRestSchedApplication {
 	 */
 	private static void readRestRules() {
 		try {
-			restRuleMaster = makeRuleMaster(String.format("%s/RestRule_0001.json", REST_RULE_PATH));
+			//restRuleMaster = makeRuleMaster(String.format("%s/RestRule_0001.json", REST_RULE_PATH));
+			restRuleMaster = makeRuleMaster(String.format("%s", REST_RULE_PATH));
 			restRuleRunner = restRuleMaster.getRuleRunner();
 			scheduledRuleMaster = makeRuleMaster(String.format("%s/NumericOneRuleTest.json", SCHEDULED_RULE_PATH));
 			scheduledRuleRunner = restRuleMaster.getRuleRunner();

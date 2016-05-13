@@ -1,0 +1,64 @@
+{
+  "rule": {
+    "name": "MILK_REST_RULE_00002",
+    "description": "None of your business",
+    "expressions": [
+      "ORANGE_JUICE = 17 + (T(java.lang.Math).PI)",
+      "SOME_RANDOM = (T(java.lang.Math).random() * 100.0)",
+      "SOME_DATE = (T(java.util.Date))"
+    ],
+    "actions": {
+      "action": [
+        {
+          "actiontype": "PRINT",
+          "message": "*************** PRE RULE ***********************"
+        }
+      ]
+    },
+    "condition": {
+      "if": "MILK.QTY > 1.11 * 1 + 0.003",
+      "then": {
+        "actions": {
+          "action": [
+            {
+              "actiontype": "PRINT",
+              "message": "********* We Have a THEN : ${SOME_DATE} : ${SOME_RANDOM} !!!"
+            },
+            {
+              "actiontype": "READPROPERTYFILE",
+              "context": "NOW",
+              "filename": "skunk.properties"
+            },
+            {
+              "actiontype": "GLOBALREST",
+              "name": "ACTION_REST",
+              "host": "TOOREST.HOST",
+              "port": "TOOREST.PORT",
+              "prefix": "TOOREST.PREFIX",
+              "tablename": "TD_PATIENT",
+              "where": [
+                {
+                  "name": "td_patient_id",
+                  "condition": "EQ",
+                  "value": 311275
+                },
+                {
+                  "name": "td_institution_id",
+                  "condition": "EQ",
+                  "value": 4
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "else": {
+        "action": {
+          "actiontype": "PRINT",
+          "message": "********* We Have a ELSE : ${SOME_DATE} : ${SOME_RANDOM} !!!"
+        }
+      }
+    }
+  }
+}
+
